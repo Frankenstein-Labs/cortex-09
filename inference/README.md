@@ -1,4 +1,4 @@
-# Inference code for DeepSeek models
+# Inference code for Cortex.09 models
 
 First convert huggingface model weight files to the format of this project.
 ```bash
@@ -8,7 +8,7 @@ export CONFIG=config.json
 python convert.py --hf-ckpt-path ${HF_CKPT_PATH} --save-path ${SAVE_PATH} --n-experts ${EXPERTS} --model-parallel ${MP}
 ```
 
-Then chat with DeepSeek model at will!
+Then chat with Cortex.09 model at will!
 ```bash
 torchrun --nproc-per-node ${MP} generate.py --ckpt-path ${SAVE_PATH} --config ${CONFIG} --interactive
 ```

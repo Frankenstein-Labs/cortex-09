@@ -875,7 +875,7 @@ class DSparkBlock(Block):
 
 
 class Transformer(nn.Module):
-    """Full DeepSeek-V4 model: embed -> HC-expand -> N blocks -> HC-head -> logits.
+    """Full Cortex.09 model: embed -> HC-expand -> N blocks -> HC-head -> logits.
     Sets global state (world_size, rank, default_dtype, scale_fmt, scale_dtype) in __init__."""
     def __init__(self, args: ModelArgs):
         global world_size, rank, default_dtype, scale_fmt, scale_dtype

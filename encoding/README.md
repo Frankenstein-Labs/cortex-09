@@ -1,13 +1,13 @@
-# DeepSeek-V4 Encoding
+# Cortex.09 Encoding
 
-This document describes the prompt encoding format used by DeepSeek-V4 series models. The encoding handles multi-turn conversations, tool calling, extended thinking (reasoning), and quick instruction tasks.
+This document describes the prompt encoding format used by Cortex.09 series models. The encoding handles multi-turn conversations, tool calling, extended thinking (reasoning), and quick instruction tasks.
 
-A self-contained reference implementation is provided in `encoding_dsv4.py`.
+A self-contained reference implementation is provided in `encoding_cortex09.py`.
 
 ## Quick Start
 
 ```python
-from encoding_dsv4 import encode_messages, parse_message_from_completion_text
+from encoding_cortex09 import encode_messages, parse_message_from_completion_text
 
 # Encode a conversation
 messages = [

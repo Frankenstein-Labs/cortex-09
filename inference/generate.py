@@ -13,7 +13,7 @@ from model import Transformer, ModelArgs
 current_dir = os.path.dirname(os.path.abspath(__file__))
 encoding_dir = os.path.join(current_dir, '../encoding')
 sys.path.insert(0, os.path.abspath(encoding_dir))
-from encoding_dsv4 import encode_messages, parse_message_from_completion_text
+from encoding_cortex09 import encode_messages, parse_message_from_completion_text
 
 
 @torch.inference_mode()
@@ -90,7 +90,7 @@ def main(
     print("load model")
     load_model(model, os.path.join(ckpt_path, f"model{rank}-mp{world_size}.safetensors"), strict=False)
     torch.set_default_device("cuda")
-    print("I'm DeepSeek 👋")
+    print("I'm Cortex.09 👋")
 
     if interactive:
         messages = []

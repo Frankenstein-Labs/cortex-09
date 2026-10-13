@@ -1,4 +1,4 @@
-"""Instantiate DeepseekV4ForCausalLM with random weights (no checkpoint).
+"""Instantiate Cortex09ForCausalLM with random weights (no checkpoint).
 
 Two modes:
   python instantiate_random.py mini    -> tiny model, runs on CPU (validated)
@@ -6,11 +6,14 @@ Two modes:
 
 For the `full` mode, run this script from the folder that holds config.json.
 """
+
 import sys
 
 import torch
 from transformers import AutoConfig
-from transformers.models.deepseek_v4 import DeepseekV4ForCausalLM
+
+import cortex09  # registers model_type "cortex09" with the transformers Auto-classes
+from cortex09 import Cortex09ForCausalLM
 
 mode = sys.argv[1] if len(sys.argv) > 1 else "mini"
 
@@ -21,7 +24,7 @@ def count(model):
 
 if mode == "mini":
     cfg = AutoConfig.for_model(
-        "deepseek_v4",
+        "cortex09",
         vocab_size=1024,
         hidden_size=128,
         moe_intermediate_size=64,
@@ -40,7 +43,7 @@ if mode == "mini":
         max_position_embeddings=512,
         sliding_window=32,
     )
-    model = DeepseekV4ForCausalLM(cfg)
+    model = Cortex09ForCausalLM(cfg)
     model.eval()
     print("params:", count(model))
     ids = torch.randint(0, cfg.vocab_size, (2, 16))
@@ -52,7 +55,7 @@ elif mode == "full":
     # Random weights, but never materialized: parameters live on the meta device.
     cfg = AutoConfig.from_pretrained(".")
     with torch.device("meta"):
-        model = DeepseekV4ForCausalLM(cfg)
+        model = Cortex09ForCausalLM(cfg)
     n = count(model)
     print(f"full architecture params: {n} ({n / 1e12:.3f} T)")
 else:
