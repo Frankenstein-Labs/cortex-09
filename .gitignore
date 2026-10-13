@@ -1,0 +1,23 @@
+# --- poids de modèle (jamais versionnés) ---
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+*.ckpt
+*.h5
+*.msgpack
+*.onnx
+*.ot
+*.index.json
+
+# --- gros artefacts non-code ---
+tokenizer.json
+
+# --- caches / divers ---
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.pytest_cache/
